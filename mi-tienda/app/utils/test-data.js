@@ -40,3 +40,36 @@ export const items = [
 		img: "https://cdn.dummyjson.com/product-images/groceries/chicken-meat/thumbnail.webp",
 	},
 ];
+
+export const people = [
+	{
+		id: 189,
+		name: "Tristan Scott",
+		email: "tristan.scott@x.dummyjson.com",
+		img: "https://dummyjson.com/icon/tristans/128",
+	},
+	{
+		id: 118,
+		name: "Benjamin Wilson",
+		email: "benjamin.wilson@x.dummyjson.com",
+		img: "https://dummyjson.com/icon/benjaminw/128",
+	},
+	{
+		id: 194,
+		name: "Brayden Hill",
+		email: "brayden.hill@x.dummyjson.com",
+		img: "https://dummyjson.com/icon/braydenh/128",
+	},
+	{
+		id: 2,
+		name: "Michael Williams",
+		email: "michael.williams@x.dummyjson.com",
+		img: "https://dummyjson.com/icon/michaelw/128",
+	},
+	{
+		id: 4,
+		name: "James Davis",
+		email: "james.davis@x.dummyjson.com",
+		img: "https://dummyjson.com/icon/jamesd/128",
+	},
+];
