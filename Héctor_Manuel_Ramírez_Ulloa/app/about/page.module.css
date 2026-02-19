@@ -1,0 +1,50 @@
+.container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  /* Fondo con degradado radial para dar efecto de iluminación de búnker */
+  background: radial-gradient(circle at center, #2b3024 0%, #1a1d16 100%);
+  /* Textura de metal cepillado sutil */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at center, #2b3024 0%, #0c0d0a 100%);
+  background-size: 50px 50px, 50px 50px, 100% 100%;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Courier New', Courier, monospace; /* Fuente tipo terminal */
+}
+
+.hero {
+  font-size: 3.5rem;
+  color: #f39c12; /* Naranja industrial */
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 50px;
+  text-shadow: 2px 2px 0px #000, 0 0 15px rgba(243, 156, 18, 0.5);
+  text-align: center;
+  border-bottom: 4px double #f39c12;
+  padding-bottom: 10px;
+}
+
+.cardsGrid {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Decoración extra para simular remaches o paneles */
+.container::before {
+  content: "CHERNOD-85 UNIT";
+  position: fixed;
+  top: 70px;
+  left: 20px;
+  color: rgba(243, 156, 18, 0.2);
+  font-size: 0.8rem;
+  border: 1px solid rgba(243, 156, 18, 0.2);
+  padding: 5px;
+}
