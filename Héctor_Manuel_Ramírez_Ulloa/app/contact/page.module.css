@@ -1,0 +1,38 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.form label {
+	color: var(--foreground-secondary);
+	margin-bottom: 0.25em;
+}
+
+.description {
+	font-size: small;
+}
+
+.form input,
+.form textarea {
+	margin-bottom: 1em;
+	font-size: 1em;
+	padding: 0.25em;
+	border-radius: 0.5em;
+}
+
+.form button {
+	border: none;
+	background: var(--positive);
+	color: var(--foreground-positive);
+	font-size: 1em;
+	font-weight: 600;
+	border-radius: 0.5em;
+	padding: 0.5em;
+}
+
+.form button:hover {
+	background: var(--positive-secondary);
+	color: var(--foreground-positive);
+	cursor: pointer;
+}
