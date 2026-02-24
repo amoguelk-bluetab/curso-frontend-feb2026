@@ -12,6 +12,9 @@ export const useData = (endpoint, limit = 10) => {
 				throw new Error(`Status ${resp.status}`);
 			})
 			.then((json) => {
+				if (!json.hasOwnProperty(endpoint)) {
+					throw new Error(`Property ${endpoint} not in response.`);
+				}
 				if (!ignoreRequest) {
 					setData({ ...data, items: json[endpoint] });
 				}
