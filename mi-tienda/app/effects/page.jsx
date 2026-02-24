@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 
 const Timer = () => {
 	const [time, setTime] = useState(0);
@@ -78,12 +78,77 @@ const Search = () => {
 	);
 };
 
+const HeavyComponent = memo(({ flag }) => {
+	console.log("Renderizar componente muy pesado");
+
+	return <p>Mi bandera está {flag ? "encendida" : "apagada"}</p>;
+});
+
+const Submit = memo(({ onSubmit, disable }) => {
+	const [data, setData] = useState({ x: 0, y: 0 });
+
+	console.log("Renderizar Submit");
+
+	return (
+		<div>
+			<label>
+				X:{" "}
+				<input
+					id="x"
+					value={data.x}
+					onChange={(e) => setData({ ...data, x: e.target.value })}
+					type="number"
+				/>
+			</label>
+			<label>
+				Y:{" "}
+				<input
+					id="y"
+					value={data.y}
+					onChange={(e) => setData({ ...data, y: e.target.value })}
+					type="number"
+				/>
+			</label>
+			<button disabled={disable} onClick={() => onSubmit(data)}>
+				Send
+			</button>
+		</div>
+	);
+});
+
 const Effects = () => {
 	const [isShown, setIsShown] = useState(false);
+	const [isDisabled, setIsDisabled] = useState(false);
+	const [silly, setSilly] = useState(false);
+
+	const handleSubmit = useCallback(
+		({ x, y }) => {
+			if (!isDisabled) alert(`x = ${x}, y = ${y}`);
+		},
+		[isDisabled],
+	);
 
 	return (
 		<>
-			{isShown && <Search />}
+			<label>
+				<input
+					type="checkbox"
+					id="isDisabled"
+					checked={isDisabled}
+					onChange={() => setIsDisabled(!isDisabled)}
+				/>{" "}
+				{!isDisabled ? "Activar" : "Desactivar"} las alertas
+			</label>
+			<label>
+				<input
+					type="checkbox"
+					id="silly"
+					checked={silly}
+					onChange={() => setSilly(!silly)}
+				/>{" "}
+				Checkbox sin sentido
+			</label>
+			{isShown && <Submit onSubmit={handleSubmit} disable={isDisabled} />}
 			<button onClick={() => setIsShown(!isShown)}>Toggle</button>
 		</>
 	);

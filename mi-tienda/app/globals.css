@@ -45,24 +45,17 @@ a {
 }
 
 .subtitle {
-	/* Title Page */
-	font-weight: 700;
-	font-size: 48px;
-	line-height: 120%;
-	display: flex;
-	align-items: center;
-	text-align: center;
-	letter-spacing: -0.02em;
-}
-
-.heading {
 	font-weight: 400;
 	font-size: 32px;
 	line-height: 120%;
-	/* o 38px */
-	display: flex;
-	align-items: center;
-	text-align: center;
+}
+
+.heading {
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 120%;
+	letter-spacing: -0.02em;
+	color: var(--foreground-secondary);
 }
 
 .main-container {

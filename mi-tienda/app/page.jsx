@@ -1,31 +1,17 @@
 "use client";
 
-import NavBar from "@/app/components/navbar";
 import StoreItem from "@/app/components/store-item";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import styles from "./page.module.css";
+import { useData } from "@/app/utils/useData";
 
 const Home = () => {
-	const [items, setItems] = useState(null);
 	const [selected, setSelected] = useState([
 		/* IDs de los seleccionados*/
 	]);
+	const [query, setQuery] = useState("");
 
-	useEffect(() => {
-		let ignoreRequest = false;
-		setItems(null);
-		fetch("https://dummyjson.com/products/category/groceries?limit=10")
-			.then((resp) => resp.json())
-			.then(({ products }) => {
-				if (!ignoreRequest) {
-					setItems(products);
-				}
-			});
-
-		return () => {
-			ignoreRequest = true;
-		};
-	}, []);
+	const { items, error } = useData("products", 100);
 
 	const handleSelectItem = (id) => {
 		if (selected.includes(id)) {
@@ -35,13 +21,33 @@ const Home = () => {
 		}
 	};
 
-	const mappedItems = items?.map((item) => ({
-		...item,
-		img: item.thumbnail,
-	}));
+	const mappedItems = useMemo(
+		() =>
+			items
+				?.filter(
+					(item) =>
+						(item.category === "groceries" || item.category === "laptops") &&
+						item.stock >= 5 &&
+						item.title.toLowerCase().includes(query.toLowerCase()),
+				)
+				?.map((item) => ({ ...item, img: item.thumbnail })),
+		[items, query],
+	);
 
 	return (
 		<>
+			<input
+				id="search"
+				className={styles.search}
+				placeholder="Buscar..."
+				value={query}
+				onChange={(e) => setQuery(e.target.value)}
+			/>
+			{error && (
+				<div className={styles.error}>
+					<p>HUBO UN ERROR</p>
+				</div>
+			)}
 			{mappedItems
 				? mappedItems.map(({ id, title, description, price, img }) => (
 						<StoreItem
