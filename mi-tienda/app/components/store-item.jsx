@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./store-item.module.css";
+import { Stack, Typography } from "@mui/material";
 
 const StoreItem = ({
 	img,
@@ -10,7 +11,8 @@ const StoreItem = ({
 	onSelected,
 }) => {
 	return (
-		<div
+		<Stack
+			direction="row"
 			className={`${styles.card} ${isSelected ? styles.selected : ""}`}
 			onClick={onSelected}
 		>
@@ -22,12 +24,14 @@ const StoreItem = ({
 				placeholder="blur"
 				blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII="
 			/>
-			<div className={styles.content}>
-				<h2 className="subtitle">{title}</h2>
-				<h3 className="heading">${price}</h3>
-				<p>{description}</p>
-			</div>
-		</div>
+			<Stack className={styles.content}>
+				<Typography variant="h3">{title}</Typography>
+				<Typography variant="h4" color="textDisabled">
+					${price}
+				</Typography>
+				<Typography variant="body1">{description}</Typography>
+			</Stack>
+		</Stack>
 	);
 };
 

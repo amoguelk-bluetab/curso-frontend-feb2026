@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import styles from "./error.module.css";
+import { Alert, AlertTitle, IconButton } from "@mui/material";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 const Error = ({ error, reset }) => {
 	useEffect(() => {
@@ -9,13 +10,21 @@ const Error = ({ error, reset }) => {
 	}, [error]);
 
 	return (
-		<div className={styles.container}>
-			<h3 className="subtitle">¡Ocurrió un error!</h3>
-			<p>Comparte este código con tu administrador: {error.digest}</p>
-			<button className={styles.button} onClick={() => reset()}>
-				Volver a intentar
-			</button>
-		</div>
+		<Alert
+			severity="error"
+			action={
+				<IconButton
+					color="inherit"
+					aria-label="reintentar"
+					onClick={() => reset()}
+				>
+					<RefreshIcon />
+				</IconButton>
+			}
+		>
+			<AlertTitle>¡Ocurrió un error!</AlertTitle>
+			Comparte este código con tu administrador: {error.digest}
+		</Alert>
 	);
 };
 

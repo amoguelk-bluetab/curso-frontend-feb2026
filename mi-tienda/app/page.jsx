@@ -1,8 +1,9 @@
 import Store from "@/app/components/store";
+import { Typography, CircularProgress } from "@mui/material";
 import { Suspense } from "react";
 
 const dataFetch = async () => {
-	const response = await fetch("https://dummyjson.com/product?limit=100");
+	const response = await fetch("https://dummyjson.com/products?limit=100");
 	return response.json();
 };
 
@@ -11,8 +12,8 @@ const Home = () => {
 
 	return (
 		<>
-			<h1 className="hero">Mi Tiendita</h1>
-			<Suspense fallback="Cargando...">
+			<Typography variant="h1">Mi Tiendita</Typography>
+			<Suspense fallback={<CircularProgress />}>
 				<Store dataPromise={dataPromise} />
 			</Suspense>
 		</>

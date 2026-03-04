@@ -3,6 +3,8 @@
 import StoreItem from "@/app/components/store-item";
 import { use, useMemo, useState } from "react";
 import styles from "./store.module.css";
+import { TextField, InputAdornment } from "@mui/material";
+import { Search } from "@mui/icons-material";
 
 const Store = ({ dataPromise }) => {
 	const [selected, setSelected] = useState([
@@ -35,12 +37,20 @@ const Store = ({ dataPromise }) => {
 
 	return (
 		<>
-			<input
+			<TextField
 				id="search"
-				className={styles.search}
 				placeholder="Buscar..."
 				value={query}
 				onChange={(e) => setQuery(e.target.value)}
+				slotProps={{
+					input: {
+						startAdornment: (
+							<InputAdornment position="start">
+								<Search />
+							</InputAdornment>
+						),
+					},
+				}}
 			/>
 			{mappedItems.map(({ id, title, description, price, img }) => (
 				<StoreItem
