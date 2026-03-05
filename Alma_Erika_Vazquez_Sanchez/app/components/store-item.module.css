@@ -1,0 +1,25 @@
+.card {
+	align-items: center;
+	width: 70%;
+}
+
+.img {
+	width: 250px;
+	height: 250px;
+	border-radius: 50px;
+	flex: none;
+}
+
+.content {
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.selected {
+	background-color: var(--positive);
+	color: var(--foreground-positive);
+}
+
+.selected h3 {
+	color: var(--positive-secondary);
+}

@@ -1,0 +1,15 @@
+.container {
+	border-radius: 50px;
+	background-color: red;
+	color: white;
+	padding: 50px 50px;
+	text-align: center;
+}
+
+.container {
+	border-radius: 50px;
+	background-color: darkred;
+	color: white;
+	padding: 10px 10px;
+	text-align: center;
+}
